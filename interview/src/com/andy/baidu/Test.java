@@ -17,7 +17,14 @@ public class Test {
 		System.out.println(countWays(3));
 		
 		int[] map = new int[10];
+		/*
+		 * 测试有问题
+		 */
 		System.out.println(countWaysDP(3,map));
+		
+		int a = 2,b=3;
+		swap(a,b);
+		swapBit(a,b);
 	}
 
 	/**
@@ -58,5 +65,30 @@ public class Test {
 			return map[n];
 		}
 	}
+	
+	/**
+	 * 编写一个函数，不用临时变量，直接交换两个数
+	 * @author  Andy Zhang
+	 * @time  Sep 24, 2014  _  12:01:09 PM
+	 * @param a
+	 * @param b
+	 */
+	public static void swap(int a, int b){
+		a = a - b;
+		b = a + b;
+		a = b - a;
+		
+		System.out.println("a : "+ a + " b: "+ b);
+	}
 
+	/*
+	 * 使用的数据类型更多，不仅限于整数
+	 */
+	public static void swapBit(int a, int b){
+		a = a^b;
+		b = a^b;
+		a = a^b;
+		
+		System.out.println("a : "+ a + " b: "+ b);
+	}
 }
