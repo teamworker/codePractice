@@ -17,29 +17,45 @@ public class Test {
 		/*
 		 * 测试有问题
 		 */
-		System.out.println(countWaysDP(3, map));
+		/*
+		 * System.out.println(countWaysDP(3, map));
+		 * 
+		 * int a = 2, b = 3; swap(a, b); swapBit(a, b);
+		 * 
+		 * System.out.println(isLeapYear(2008));
+		 * System.out.println(isLeapYear(1997));
+		 * 
+		 * System.out.println(maxBinary(17)); System.out.println(isPowerof2(4));
+		 * System.out.println(isPowerof2(7));
+		 * System.out.println(isPowerof2(-4)); System.out.println(isPowerof2(1 /
+		 * 2));
+		 * 
+		 * System.out.println(isPower2(4)); System.out.println(isPower2(7));
+		 * System.out.println(isPower2(17));
+		 * 
+		 * System.out.println("------------------------");
+		 * 
+		 * System.out.println(maxPowerof2(17));
+		 * System.out.println(maxPowerof2(32));
+		 */
 
-		int a = 2, b = 3;
-		swap(a, b);
-		swapBit(a, b);
-
-		System.out.println(isLeapYear(2008));
-		System.out.println(isLeapYear(1997));
+		System.out.println("--------------- hasCircle Test --------------");
+		/*
+		 * 测试用例还没写
+		 */
+		Node head = null;
+		for (int i = 0; i < 9; i++) {
+			Node node = new Node(i);
+			node.next = head;
+			head = node;
+		}
 		
-		System.out.println(maxBinary(17));
-		System.out.println(isPowerof2(4));
-		System.out.println(isPowerof2(7));
-		System.out.println(isPowerof2(-4));
-		System.out.println(isPowerof2(1/2));
+		/*while(head != null){
+			System.out.print(head.data + "  :  ");
+			head = head.next;
+		}*/
 		
-		System.out.println(isPower2(4));
-		System.out.println(isPower2(7));
-		System.out.println(isPower2(17));
 		
-		System.out.println("------------------------");
-		
-		System.out.println(maxPowerof2(17));
-		System.out.println(maxPowerof2(32));
 	}
 
 	/**
@@ -116,33 +132,77 @@ public class Test {
 			return true;
 		return false;
 	}
-	
+
 	/*
 	 * 计算一个不大于给订数的最大二进制数
 	 */
-	public static int maxBinary(int num){
+	public static int maxBinary(int num) {
 		String binary = Integer.toBinaryString(num);
-//		num = Integer.parseInt(binary.substring(1));
+		// num = Integer.parseInt(binary.substring(1));
 		System.out.println(binary);
 		return num;
 	}
-	
+
 	/*
 	 * &操作符 判断一个数是否为２的整数次幂
 	 */
-	public static boolean isPowerof2(int num){
-		return (num&(num-1))==0? true:false;
+	public static boolean isPowerof2(int num) {
+		return (num & (num - 1)) == 0 ? true : false;
 	}
-	
-	public static int isPower2(int num){
-		return num&(num-1);
+
+	public static int isPower2(int num) {
+		return num & (num - 1);
 	}
+
 	/*
 	 * 计算不小于给定数的最小的2整数次方幂
 	 */
-	public static int maxPowerof2(int num){
-		return (num&(num-1))==0?num:num&(num-1);
+	public static int maxPowerof2(int num) {
+		return (num & (num - 1)) == 0 ? num : num & (num - 1);
 	}
-	
-	
+
+	/*
+	 * 判断一个链表中是否有环
+	 */
+	public static boolean hasCircle(Node head) {
+		Node slow = head;
+		Node fast = head;
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+
+			if (slow == fast) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/*
+	 * 返回环路的开始结点
+	 */
+	public static Node FindStartNode(Node head){
+		Node slow = head;
+		Node fast = head;
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+
+			if (slow == fast) {
+				break;
+			}
+		}
+		
+		if(fast == null||fast.next==null){
+			return null;
+		}
+		
+		slow = head;
+		while(slow != fast){
+			slow = slow.next;
+			fast = fast.next;
+		}
+		
+		return fast;
+	}
 }
